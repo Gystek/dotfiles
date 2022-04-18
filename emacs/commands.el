@@ -1,0 +1,7 @@
+(defun indent-whole-buffer ()
+  (interactive)
+  (point-to-register ?R)
+  (mark-whole-buffer)
+  (indent-region (point) (mark))
+  (deactivate-mark)
+  (jump-to-register ?R))
