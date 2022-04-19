@@ -8,3 +8,9 @@
 (setq vc-make-backup-files t)
 
 (add-hook 'after-init-hook 'global-company-mode)
+
+(which-key-mode)
+
+(projectile-mode 1)
+
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)

@@ -9,7 +9,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(magit paradox nix-mode nix-modeline ivy srcery-theme company use-package))
+   '(projectile which-key magit paradox nix-mode nix-modeline ivy srcery-theme company use-package))
  '(paradox-github-token t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

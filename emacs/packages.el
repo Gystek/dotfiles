@@ -10,9 +10,7 @@
 
 (use-package company :ensure t)
 
-(use-package srcery-theme
-  :ensure t
-  :config (load-theme 'srcery t))
+(use-package srcery-theme :ensure t)
 
 (use-package ivy :ensure t)
 
@@ -22,3 +20,6 @@
 (use-package paradox :ensure t)
 
 (use-package magit :ensure t)
+(use-package projectile :ensure t)
+
+(use-package which-key :ensure t)

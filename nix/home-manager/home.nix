@@ -86,7 +86,7 @@
     shellAliases = {
       ll = "ls -l";
       hmb = "home-manager build switch";
-      nrs = "nixos-rebuild switch -I nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs -I nixos-config=/etc/nixos/configuration.nix -I home-manager=/nix/var/nix/profiles/per-user/root/channels/home-manager";
+      nrs = "doas nixos-rebuild switch -I nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs -I nixos-config=/etc/nixos/configuration.nix -I home-manager=/nix/var/nix/profiles/per-user/root/channels/home-manager";
     };
     history = {
       size = 10000;
