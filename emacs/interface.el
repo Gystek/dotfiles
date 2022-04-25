@@ -1,11 +1,10 @@
 (setq inhibit-startup-message t)
 
-(defun add-hook-m (fun &rest hooks)
-  (dolist (hook hooks)
-    (add-hook fun hook)))
+(if (fboundp 'scroll-bar-mode)
+    (scroll-bar-mode -1))
 
-(add-hook-m 'display-line-numbers-mode
-	    'prog-mode-hook 'org-mode-hook)
+(setq column-number-mode t)
+(global-linum-mode 1)
 
 (load-theme 'srcery t)
 (ivy-mode)

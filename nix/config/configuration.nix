@@ -60,12 +60,18 @@
     ];
   };
 
-  nix.nixPath = [
-    "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs"
-    "nixos-config=/etc/nixos/configuration.nix"
-    "home-manager=/nix/var/nix/profiles/per-user/root/channels/home-manager"
-    "/nix/var/nix/profiles/per-user/root/channels"
-  ];
+  nix = {
+    nixPath = [
+      "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs"
+      "nixos-config=/etc/nixos/configuration.nix"
+      "home-manager=/nix/var/nix/profiles/per-user/root/channels/home-manager"
+      "/nix/var/nix/profiles/per-user/root/channels"
+    ];
+    extraOptions = ''
+      keep-outputs = true     
+      keep-derivations = true
+    '';
+  };
 
   environment.systemPackages = with pkgs; [
     vim

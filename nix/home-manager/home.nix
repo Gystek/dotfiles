@@ -25,10 +25,13 @@
     tree
     zoxide
     libnotify
+    ripgrep
+    julia-bin
     (pkgs.tor-browser-bundle-bin.override {
           mediaSupport = true;
           pulseaudioSupport = true;
     })
+    flameshot
     
     unifont
     fantasque-sans-mono
@@ -37,6 +40,9 @@
   programs.home-manager.enable = true;
 
   fonts.fontconfig.enable = true;
+
+  programs.direnv.enable = true;
+  programs.direnv.nix-direnv.enable = true;
       
   services.dunst = {
     enable = true;
@@ -88,9 +94,20 @@
       hmb = "home-manager build switch";
       nrs = "doas nixos-rebuild switch -I nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs -I nixos-config=/etc/nixos/configuration.nix -I home-manager=/nix/var/nix/profiles/per-user/root/channels/home-manager";
     };
+    initExtra = ''
+    function term_size {
+             SIZE=''${1:-15}
+             FONT=''${2:-FantasqueSansMono}
+
+             printf '\33]50;%s%d\007' "xft:''${FONT}:pixelsize=" "''${SIZE}"
+    }
+    '';
     history = {
       size = 10000;
       path = "${config.xdg.dataHome}/zsh/history";
+    };
+    sessionVariables = {
+      DIRENV_ALLOW_NIX = 1;
     };
     oh-my-zsh = {
       enable = true;

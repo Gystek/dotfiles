@@ -11,7 +11,7 @@
 (defparameter *multi-screen* t)
 
 (defcommand toggle-screen-layout () ()
-  (setf '*multi-screen* (not *multi-screen*))
+  (setq *multi-screen* (not *multi-screen*))
   (run-shell-command (xrandr-command *multi-screen*)))
 	  
 (bind-key "C-S" "toggle-screen-layout")

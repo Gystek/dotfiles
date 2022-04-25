@@ -7,10 +7,8 @@
 
 (setq vc-make-backup-files t)
 
-(add-hook 'after-init-hook 'global-company-mode)
+(add-hook 'c-mode-hook 'auto-revert-mode)
+(setq c-default-style "linux")
 
-(which-key-mode)
-
-(projectile-mode 1)
-
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+(setq user-full-name "Gustek")
+(setq user-mail-address "gustek@riseup.net")
