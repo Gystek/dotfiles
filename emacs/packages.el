@@ -1,3 +1,9 @@
+;; ----------------------------------------------------------------------------
+;; "THE BEER-WARE LICENSE" (Revision 42):
+;; <gustek@riseup.net> wrote this file.  As long as you retain this notice you
+;; can do whatever you want with this stuff. If we meet some day, and you think
+;; this stuff is worth it, you can buy me a beer in return.
+;; ----------------------------------------------------------------------------
 (require 'package)
 
 (add-to-list 'package-archives
@@ -12,6 +18,7 @@
   :config (add-hook 'after-init-hook 'global-company-mode))
 
 (use-package srcery-theme :ensure t)
+(use-package monokai-theme :ensure t)
 
 (use-package ivy :ensure t)
 (use-package projectile :ensure t
@@ -62,3 +69,5 @@
                                                            (projectile-project-root))))))
 (use-package slime :ensure t
   :config (setq inferior-lisp-program "sbcl"))
+
+(use-package haskell-mode :ensure t)

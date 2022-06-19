@@ -1,4 +1,4 @@
-(set-prefix-key (kbd "C-RET"))
+(set-prefix-key (kbd "C-."))
 
 (bind-key "P" "exec flameshot gui")
 (bind-key "C-l" "exec systemctl suspend; slock; exit")

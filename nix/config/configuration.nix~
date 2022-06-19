@@ -24,9 +24,6 @@
     networkmanager.enable = true;
   };
 
-  services.nscd.enable = true;
-  system.nssDatabases.hosts = [ "mymachines" "mdns_minimal" "[NOTFOUND=return]" "mdns" ];
-
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "Lat2-Terminus16";

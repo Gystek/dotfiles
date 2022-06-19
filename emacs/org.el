@@ -4,15 +4,10 @@
 ;; can do whatever you want with this stuff. If we meet some day, and you think
 ;; this stuff is worth it, you can buy me a beer in return.
 ;; ----------------------------------------------------------------------------
-(setq inhibit-startup-message t)
+(setq org-agenda-files '("~/documents/org/"
+			 "~/documents/org/projects/"))
 
-(if (fboundp 'scroll-bar-mode)
-    (scroll-bar-mode -1))
+(setq org-todo-keywords
+      '((sequence "TODO" "IN-PROGRESS" "|" "DONE")))
 
-(setq column-number-mode t)
-(global-linum-mode 1)
-
-(if window-system
-    (load-theme 'srcery t)
-  (load-theme 'monokai t))
-(ivy-mode)
+(setq org-log-done 'time)

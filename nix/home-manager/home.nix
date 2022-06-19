@@ -4,10 +4,12 @@
 
   home.username = "gustek";
   home.homeDirectory = "/home/gustek";
-  
+
   home.stateVersion = "21.05";
 
   home.packages = with pkgs; [
+    capture
+    shotgun
     killall
     acpi
     inkscape
@@ -18,53 +20,64 @@
     feh
     ctags
     man-pages
+    polymc
     man-pages-posix
+    mutt
     unzip
     arandr
+    htop
     redshift
     tree
     zoxide
     libnotify
+    pass
     ripgrep
     julia-bin
+    vlc
+    kdenlive
+    tdesktop
     (pkgs.tor-browser-bundle-bin.override {
           mediaSupport = true;
           pulseaudioSupport = true;
     })
     flameshot
-    
+
+    libnotify
+
     unifont
     fantasque-sans-mono
+    noto-fonts-cjk
+    amiri
   ];
-  
+
   programs.home-manager.enable = true;
 
   fonts.fontconfig.enable = true;
 
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
-      
-  services.dunst = {
-    enable = true;
-    settings = {
-      global = {
-        follow = "mouse";
-        enable_posix_regex = true;
-        height = 100;
-        width = 300;
-        notification_limit = 0;
-        origin = "top-right";
-        transparency = 20;
-        font = "Fantasque Sans Mono 9";
-        format = "%a - <b>%s</b>\n%b";
 
-        mouse_left = "open_url";
-        mouse_middle = "close_current";
-        mouse_right = "context";
-      };
-    };
-  };
-  
+  # services.dunst = {
+  #   enable = false;
+  #   settings = {
+  #     global = {
+  #       follow = "mouse";
+  #       enable_posix_regex = true;
+  #       height = 100;
+  #       width = 300;
+  #       notification_limit = 0;
+  #       origin = "top-right";
+  #       transparency = 20;
+  #       font = "Fantasque Sans Mono 9";
+  #       format = "%a - <b>%s</b>\n%b";
+
+  #       mouse_left = "open_url";
+  #       mouse_middle = "close_current";
+  #       mouse_right = "context";
+  #     };
+  #   };
+  # };
+
   programs.emacs.enable = true;
 
   programs.git = {
@@ -91,6 +104,7 @@
     enable = true;
     shellAliases = {
       ll = "ls -l";
+      emacs = "emacs -nw";
       hmb = "home-manager build switch";
       nrs = "doas nixos-rebuild switch -I nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs -I nixos-config=/etc/nixos/configuration.nix -I home-manager=/nix/var/nix/profiles/per-user/root/channels/home-manager";
     };

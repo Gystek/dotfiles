@@ -8,12 +8,12 @@
 	      "--mode 1680x1050 --pos 0x0 --rotate normal"
 	    "--off")))
 
-(defparameter *multi-screen* t)
+(defparameter *multi-screen* nil)
 
 (defcommand toggle-screen-layout () ()
   (setq *multi-screen* (not *multi-screen*))
   (run-shell-command (xrandr-command *multi-screen*)))
-	  
+
 (bind-key "C-S" "toggle-screen-layout")
 
 (run-shell-command "redshift -l 45.76:4.83")

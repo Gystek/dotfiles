@@ -4,15 +4,15 @@
 ;; can do whatever you want with this stuff. If we meet some day, and you think
 ;; this stuff is worth it, you can buy me a beer in return.
 ;; ----------------------------------------------------------------------------
-(setq inhibit-startup-message t)
 
-(if (fboundp 'scroll-bar-mode)
-    (scroll-bar-mode -1))
+;; I do not use M-x rmail or C-x m because I am too lazy to set them up
+;; Seriously now, I just find it more convenient to use Mutt instead.
 
-(setq column-number-mode t)
-(global-linum-mode 1)
+(defvar mutt-bin (format "/home/%s/.nix-profile/bin/mutt"
+			(getenv "USER")))
 
-(if window-system
-    (load-theme 'srcery t)
-  (load-theme 'monokai t))
-(ivy-mode)
+(defun mutt ()
+  (interactive)
+  (split-window-horizontally)
+  (other-window 1)
+  (ansi-term mutt-bin "Mutt"))
