@@ -91,6 +91,7 @@
       l = "log";
       ps = "push";
       pl = "pull";
+      pushall = "'!git remote | xargs -L1 git push --all'";
     };
     signing.signByDefault = true;
     signing.key = "2FDC6432099B36D9";
