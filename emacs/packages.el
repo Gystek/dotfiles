@@ -68,6 +68,9 @@
                                     (shell-command (format "cd %s; make format; cd -"
                                                            (projectile-project-root))))))
 (use-package slime :ensure t
-  :config (setq inferior-lisp-program "sbcl"))
+  :config
+  (setq inferior-lisp-program "sbcl"
+	slime-enable-evaluate-in-emacs t
+	slime-net-coding-system 'utf-8-unix))
 
 (use-package haskell-mode :ensure t)

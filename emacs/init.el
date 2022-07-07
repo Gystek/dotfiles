@@ -4,7 +4,7 @@
 ;; can do whatever you want with this stuff. If we meet some day, and you think
 ;; this stuff is worth it, you can buy me a beer in return.
 ;; ----------------------------------------------------------------------------
-(defvar my-modules '("packages" "misc" "interface" "keybindings" "commands" "org" "mail"))
+(defvar my-modules '("packages" "misc" "interface" "keybindings" "commands" "org" "mail" "slime"))
 
 (dolist (module my-modules)
   (load (expand-file-name (format "%s.el" (concat user-emacs-directory module)))))

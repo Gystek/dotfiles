@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
 
@@ -8,6 +8,8 @@
   home.stateVersion = "21.05";
 
   home.packages = with pkgs; [
+    steam
+    pinta
     capture
     shotgun
     killall
@@ -15,6 +17,8 @@
     inkscape
     stow
     firefox
+    qutebrowser
+    nyxt
     sbcl
     clisp
     feh
@@ -48,7 +52,15 @@
     fantasque-sans-mono
     noto-fonts-cjk
     amiri
+    tamsyn
   ];
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "steam-original"
+    "steam"
+    "steam-runtime"
+  ];
+  programs.steam.enable = true;
 
   programs.home-manager.enable = true;
 
@@ -91,7 +103,7 @@
       l = "log";
       ps = "push";
       pl = "pull";
-      pushall = "'!git remote | xargs -L1 git push --all'";
+      pushall = "!git remote | xargs -L1 git push --all";
     };
     signing.signByDefault = true;
     signing.key = "2FDC6432099B36D9";
@@ -105,18 +117,11 @@
     enable = true;
     shellAliases = {
       ll = "ls -l";
+      musidex = "docker run -d -p 80:3200 -v /home/gustek/musidex/:/storage -t musidex";
       emacs = "emacs -nw";
       hmb = "home-manager build switch";
       nrs = "doas nixos-rebuild switch -I nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs -I nixos-config=/etc/nixos/configuration.nix -I home-manager=/nix/var/nix/profiles/per-user/root/channels/home-manager";
     };
-    initExtra = ''
-    function term_size {
-             SIZE=''${1:-15}
-             FONT=''${2:-FantasqueSansMono}
-
-             printf '\33]50;%s%d\007' "xft:''${FONT}:pixelsize=" "''${SIZE}"
-    }
-    '';
     history = {
       size = 10000;
       path = "${config.xdg.dataHome}/zsh/history";
@@ -127,7 +132,7 @@
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" "per-directory-history" "zoxide" ];
-      theme = "nicoulaj";
+      theme = "Soliah";
       extraConfig = ''
       zstyle  ':omz:update' frequency 7
       '';
@@ -138,6 +143,13 @@
     enable = true;
     settings = {
       font = {
+        normal.family = "Tamsyn";
+        normal.style  = "Regular";
+        bold.family   = "Tamsyn";
+        bold.style    = "Bold";
+        italic.family = "Tamsyn";
+        italic.style  = "Italic";
+
         size = 9.0;
       };
       colors = {
@@ -154,7 +166,7 @@
           blue    = "0x268bd2";
           magenta = "0xd33682";
           cyan    = "0x2aa198";
-          white   = "0xeee8d5";
+          white   = "0x586e75";
         };
         bright = {
           black   = "0x002b36";

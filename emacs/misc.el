@@ -14,7 +14,7 @@
 (setq vc-make-backup-files t)
 
 (add-hook 'c-mode-hook 'auto-revert-mode)
-(setq c-default-style "bsd")
+(setq c-default-style "gnu")
 
 (defun c-comment-setup ()
   (setq comment-start "/*"

@@ -3,6 +3,7 @@
 stow emacs -t ${HOME}/.emacs.d/
 stow stumpwm -t ${HOME}/.stumpwm.d/
 stow X -t ${HOME}/
+stow qutebrowser -t ${HOME}/.config/qutebrowser/
 ln -s $(pwd)/.muttrc /home/${USER}/.muttrc
 
 (cd nix; \
