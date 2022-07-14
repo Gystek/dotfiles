@@ -27,17 +27,12 @@
 	    (projectile-mode 1)
 	    (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)))
 
-(use-package nix-modeline :ensure t)
-(use-package nix-mode :ensure t)
-
 (use-package paradox :ensure t)
 
 (use-package magit :ensure t)
 
 (use-package which-key :ensure t
   :config (which-key-mode 1))
-
-(use-package direnv :config (direnv-mode) :ensure t)
 
 (use-package pdf-tools
   :pin manual
@@ -48,8 +43,6 @@
   (add-hook 'pdf-view-mode-hook (lambda() (linum-mode -1)))
   :custom
   (pdf-annot-activate-created-annotations t))
-
-(use-package julia-mode :ensure t)
 
 (use-package rust-mode :ensure t
   :config
@@ -72,5 +65,3 @@
   (setq inferior-lisp-program "sbcl"
 	slime-enable-evaluate-in-emacs t
 	slime-net-coding-system 'utf-8-unix))
-
-(use-package haskell-mode :ensure t)

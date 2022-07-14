@@ -4,7 +4,7 @@
 ;; can do whatever you want with this stuff. If we meet some day, and you think
 ;; this stuff is worth it, you can buy me a beer in return.
 ;; ----------------------------------------------------------------------------
-(defvar my-modules '("packages" "misc" "interface" "keybindings" "commands" "org" "mail" "slime"))
+(defvar my-modules '("packages" "misc" "interface" "keybindings" "commands" "org" "slime"))
 
 (dolist (module my-modules)
   (load (expand-file-name (format "%s.el" (concat user-emacs-directory module)))))
@@ -21,3 +21,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
+(require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
+;; ## end of OPAM user-setup addition for emacs / base ## keep this line
