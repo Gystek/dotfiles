@@ -1,4 +1,4 @@
-setkxmap -option caps:escape
+setxkbmap -option caps:escape
 xmodmap -e "keysym Shift_R = Multi_key"
 
 HDMI=$(xrandr | grep " connected " | grep HDMI-1)
@@ -12,4 +12,8 @@ else
 	   --output HDMI-1 --mode 1680x1050 --pos 0x0 --rotate normal
 fi
 
-exec dbus-launch xfce4-session
+while xsetroot -name "$(/home/gustek/sources/dotfiles/dwm/modeline.sh)"
+do
+    sleep 5
+done &
+exec dbus-launch dwm

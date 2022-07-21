@@ -5,9 +5,7 @@
 ;; this stuff is worth it, you can buy me a beer in return.
 ;; ----------------------------------------------------------------------------
 (setq org-agenda-files '("~/documents/org/"
-			 "~/documents/org/projects/"))
-
-(setq org-todo-keywords
-      '((sequence "TODO" "IN-PROGRESS" "|" "DONE")))
-
-(setq org-log-done 'time)
+			 "~/documents/org/projects/")
+      org-todo-keywords '((sequence "TODO" "IN-PROGRESS" "|" "DONE"))
+      org-log-done 'time
+      org-latex-pdf-process '("tectonic %f"))

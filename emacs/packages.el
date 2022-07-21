@@ -34,15 +34,15 @@
 (use-package which-key :ensure t
   :config (which-key-mode 1))
 
-(use-package pdf-tools
-  :pin manual
-  :config
-  (pdf-tools-install)
-  (setq-default pdf-view-display-size 'fit-width)
-  (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward)
-  (add-hook 'pdf-view-mode-hook (lambda() (linum-mode -1)))
-  :custom
-  (pdf-annot-activate-created-annotations t))
+;; (use-package pdf-tools
+;;   :pin manual
+;;   :config
+;;   (pdf-tools-install)
+;;   (setq-default pdf-view-display-size 'fit-width)
+;;   (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward)
+;;   (add-hook 'pdf-view-mode-hook (lambda() (linum-mode -1)))
+;;   :custom
+;;   (pdf-annot-activate-created-annotations t))
 
 (use-package rust-mode :ensure t
   :config
@@ -65,3 +65,5 @@
   (setq inferior-lisp-program "sbcl"
 	slime-enable-evaluate-in-emacs t
 	slime-net-coding-system 'utf-8-unix))
+
+(use-package nov :ensure t)

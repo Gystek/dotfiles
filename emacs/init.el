@@ -14,7 +14,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(haskell-mode which-key use-package treemacs srcery-theme slime rust-mode pdf-tools paradox nix-modeline nix-mode monokai-theme magit julia-mode direnv counsel-projectile company clang-format caml all-the-icons-dired)))
+   '(nov haskell-mode which-key use-package treemacs srcery-theme slime rust-mode pdf-tools paradox nix-modeline nix-mode monokai-theme magit julia-mode direnv counsel-projectile company clang-format caml all-the-icons-dired)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
