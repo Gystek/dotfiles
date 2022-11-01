@@ -17,3 +17,4 @@ stow alacritty -t ${HOME}/.config/alacritty/
 
 linkto ${HOME}/.gnus .gnus
 linkto ${HOME}/.bashrc .bashrc
+stow fish -t ${HOME}/.config/fish/

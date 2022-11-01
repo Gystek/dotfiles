@@ -1,5 +1,7 @@
 #!/bin/sh
 
+UNDER_20=0
+
 mod_battery() {
     case $(cat /sys/class/power_supply/AC/online | awk '{$1=$1;print}') in
 	1*)
@@ -10,7 +12,16 @@ mod_battery() {
 	    ;;
     esac
 
-    acpi -b | egrep "[cC]harging, [0-9]?[0-9][0-9]%" -o | awk -F', ' '{ print $2 }'
+    level=$(acpi -b | egrep "D?i?s?[cC]harging, [0-9]?[0-9][0-9]" -o | awk -F', ' '{ print $2 }')
+    if [ "$level" -lt 20 ] && [ $UNDER_20 -eq 0]
+    then
+	herbe "Batterie faible !" " " "Il reste moins de 20% de  batterie."
+	UNDER_20=1
+    else
+p	UNDER_20=0
+    fi
+
+    printf "${level}%%\n"
 }
 
 mod_date() {

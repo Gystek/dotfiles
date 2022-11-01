@@ -12,6 +12,8 @@ else
 	   --output HDMI-1 --mode 1680x1050 --pos 0x0 --rotate normal
 fi
 
+feh --bg-max ~/Downloads/soviet_flags.png
+
 while xsetroot -name "$(/home/gustek/sources/dotfiles/dwm/modeline.sh)"
 do
     sleep 5

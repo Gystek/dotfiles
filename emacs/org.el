@@ -4,6 +4,8 @@
 ;; can do whatever you want with this stuff. If we meet some day, and you think
 ;; this stuff is worth it, you can buy me a beer in return.
 ;; ----------------------------------------------------------------------------
+(setq org-image-actual-width nil)
+
 (setq org-agenda-files '("~/documents/org/"
 			 "~/documents/org/projects/")
       org-todo-keywords '((sequence "TODO" "IN-PROGRESS" "|" "DONE"))
