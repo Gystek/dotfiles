@@ -15,6 +15,7 @@ stow X -t ${HOME}/
 stow git -t ${HOME}
 stow alacritty -t ${HOME}/.config/alacritty/
 
+linkto ${HOME}/.exrc .exrc
 linkto ${HOME}/.gnus .gnus
 linkto ${HOME}/.bashrc .bashrc
 stow fish -t ${HOME}/.config/fish/
