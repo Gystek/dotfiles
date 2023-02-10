@@ -13,7 +13,7 @@ linkto() {
 stow emacs -t ${HOME}/.emacs.d/
 stow X -t ${HOME}/
 stow git -t ${HOME}
-stow alacritty -t ${HOME}/.config/alacritty/
+stow kakoune -t ${HOME}/.config/kak
 
 linkto ${HOME}/.exrc .exrc
 linkto ${HOME}/.gnus .gnus

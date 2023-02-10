@@ -55,15 +55,8 @@
   (define-key rust-mode-map (kbd "C-c C-t") 'rust-test)
   (define-key rust-mode-map (kbd "C-c C-r") 'rust-run))
 
-(use-package clang-format :ensure t
-  :config
-  (global-set-key (kbd "C-c C-f") (lambda () (interactive)
-                                    (shell-command (format "cd %s; make format; cd -"
-                                                           (projectile-project-root))))))
 (use-package slime :ensure t
   :config
   (setq inferior-lisp-program "sbcl"
 	slime-enable-evaluate-in-emacs t
 	slime-net-coding-system 'utf-8-unix))
-
-(use-package nov :ensure t)

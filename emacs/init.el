@@ -8,20 +8,22 @@
 
 (dolist (module my-modules)
   (load (expand-file-name (format "%s.el" (concat user-emacs-directory module)))))
+
+(setenv "PATH" (concat (getenv "PATH") ":/bin"))
+(setq exec-path (append exec-path '("/bin")))
+
+(put 'upcase-region 'disabled nil)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(nov haskell-mode which-key use-package treemacs srcery-theme slime rust-mode pdf-tools paradox nix-modeline nix-mode monokai-theme magit julia-mode direnv counsel-projectile company clang-format caml all-the-icons-dired)))
+   '(lua-mode which-key use-package tuareg srcery-theme slime rust-mode projectile paradox nov nix-mode monokai-theme magit julia-mode ivy direnv company clang-format)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
-(require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
-;; ## end of OPAM user-setup addition for emacs / base ## keep this line
-(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)

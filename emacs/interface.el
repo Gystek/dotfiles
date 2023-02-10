@@ -12,7 +12,7 @@
 (setq column-number-mode t)
 (global-linum-mode 1)
 
-(set-face-attribute 'default nil :font "Tamsyn")
+(set-face-attribute 'default nil :font "Pragmata Pro Mono-12")
 
 (if window-system
     (load-theme 'srcery t)
