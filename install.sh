@@ -13,7 +13,12 @@ linkto() {
 stow emacs -t ${HOME}/.emacs.d/
 stow X -t ${HOME}/
 stow git -t ${HOME}
-stow kakoune -t ${HOME}/.config/kak
+cd kakoune/
+stow kak -t ${HOME}/.config/kak
+stow kak-lsp -t ${HOME}/.config/kak-lsp
+cd ../
+
+stow newsboat -t ${HOME}/.newsboat/
 
 linkto ${HOME}/.exrc .exrc
 linkto ${HOME}/.gnus .gnus

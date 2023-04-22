@@ -12,7 +12,7 @@ mod_battery() {
 	    ;;
     esac
 
-    level=$(acpi -b | egrep "D?i?s?[cC]harging, [0-9]?[0-9][0-9]" -o | awk -F', ' '{ print $2 }')
+    level=$(acpi -b | egrep "(D?i?s?[cC]harging|Full), [0-9]?[0-9][0-9]" -o | awk -F', ' '{ print $2 }')
     if [ "$level" -lt 20 ] && [ $UNDER_20 -eq 0]
     then
 	herbe "Batterie faible !" " " "Il reste moins de 20% de  batterie."

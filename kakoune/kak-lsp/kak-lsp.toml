@@ -1,0 +1,10 @@
+verbosity = 2
+
+[server]
+timeout = 1800
+
+[language.rust]
+filetypes = ["rust"]
+roots     = ["Cargo.toml"]
+command   = "rust-analyzer"
+

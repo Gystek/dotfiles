@@ -1,7 +1,9 @@
 setxkbmap -option caps:escape
 xmodmap -e "keysym Shift_R = Multi_key"
 
-HDMI=$(xrandr | grep " connected " | grep HDMI-1)
+start-pulseaudio-x11
+
+HDMI=$(xrandr | grep " connected " | grep HDMI1)
 
 if [ -z "$HDMI" ]
 then
@@ -12,7 +14,7 @@ else
 	   --output HDMI-1 --mode 1680x1050 --pos 0x0 --rotate normal
 fi
 
-feh --bg-max ~/Downloads/4-wielkie.png
+feh --bg-max ~/Documents/pictures/czeczenia_noc.jpg
 
 while xsetroot -name "$(/home/gustek/sources/dotfiles/dwm/modeline.sh)"
 do
