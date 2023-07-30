@@ -7,11 +7,11 @@ HDMI=$(xrandr | grep " connected " | grep HDMI1)
 
 if [ -z "$HDMI" ]
 then
-    xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal\
-	   --output HDMI-1 --off
+    xrandr --output eDP1 --primary --mode 1920x1080 --pos 0x0 --rotate normal\
+	   --output HDMI1 --off
 else
-    xrandr --output eDP-1 --primary --mode 1920x1080 --pos 1680x0 --rotate normal\
-	   --output HDMI-1 --mode 1680x1050 --pos 0x0 --rotate normal
+    xrandr --output eDP1 --primary --mode 1920x1080 --pos 1680x0 --rotate normal\
+	   --output HDMI1 --mode 1680x1050 --pos 0x0 --rotate normal
 fi
 
 feh --bg-max ~/Documents/pictures/czeczenia_noc.jpg

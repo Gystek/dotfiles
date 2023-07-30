@@ -19,7 +19,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(lua-mode which-key use-package tuareg srcery-theme slime rust-mode projectile paradox nov nix-mode monokai-theme magit julia-mode ivy direnv company clang-format)))
+   '(lua-mode which-key use-package tuareg srcery-theme slime rust-mode projectile paradox nov nix-mode monokai-theme magit julia-mode ivy direnv company clang-format))
+ '(smtpmail-smtp-server "mail.riseup.net")
+ '(smtpmail-smtp-service 465))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
