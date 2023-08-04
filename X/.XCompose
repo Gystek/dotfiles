@@ -151,7 +151,7 @@ include "%L"
 <Multi_key> <E> <E> : "Ə"
 
 <Multi_key> <Multi_key> <l> <l> <h> : "الله"
-<Multi_key> <Multi_key> <s> <w> <t> : "سبحنه و تعالى"
+<Multi_key> <Multi_key> <s> <w> <t> : "سبحانه و تعالى"
 <Multi_key> <Multi_key> <3> <w> <j> : "عز وجل"
 
 <Multi_key> <Multi_key> <s> <a> <w> <s> : "ﷺ"
