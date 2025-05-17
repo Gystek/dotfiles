@@ -1,11 +1,14 @@
 [user]
-	name  = "Gustek"
-	email = "gustek@riseup.net"
-	
-	signingkey = "2FDC6432099B36D9"
+    name = "Gustek"
+    email = "gustek@riseup.net"
+    signingkey = "2FDC6432099B36D9"
 [commit]
-	gpgsign = true
+    gpgsign = true
+[core]
+    editor = "kak"
 [pull]
-	rebase = true
+    rebase = true
 [init]
-	defaultBranch = "master"
+    defaultBranch = "master" 
+[gpg]
+    program = gpg2

@@ -1,25 +1,20 @@
-auto-reload yes
+unbind-key p
 
-external-url-viewer "urlscan -dc -r 'linkhandler {}'"
+bind-key O prev-unread
+bind-key E next-unread
 
-bind-key j down
-bind-key k up
-bind-key j next articlelist
-bind-key k prev articlelist
-bind-key J next-feed articlelist
-bind-key K prev-feed articlelist
-bind-key G end
-bind-key g home
-bind-key d pagedown
-bind-key u pageup
-bind-key h quit
-bind-key a toggle-article-read
-bind-key n next-unread
-bind-key N prev-unread
-bind-key D pb-download
-bind-key U show-urls
-bind-key x pb-delete
+bind-key p open-in-browser
+bind-key P open-in-browser-and-mark-read
 
-browser firefox
+unbind-key o
+bind-key o prev
+unbind-key e
+bind-key e next
+unbind-key n
+bind-key n enqueue
+
+external-url-viewer urlview
+
 macro , open-in-browser
-macro v set browser "setsid -f mpv --really-quiet"; open-in-browser; set browser firefox
+macro v set browser "mpv"; open-in-browser
+macro f set browser "firefox"; open-in-browser
