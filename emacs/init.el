@@ -18,37 +18,34 @@
     `(define-key ,map ,(car binding) ',(cdr binding))))
 
 ;; Package management
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
+(condition-case nil
+    (require 'use-package)
+  (file-error
+   (require 'package)
+   (add-to-list 'package-archives
+		'("melpa" . "https://melpa.org/packages/") t)
+   (package-initialize)
+   (package-refresh-contents)
+   (package-install 'use-package)
+   (setq use-package-always-ensure t)
+   (require 'use-package)))
 
-(defvar refreshed nil)
-(defsubst using (&rest packages)
-  "Install the given PACKAGES if they are not already installed"
-  (dolist (package packages)
-    (unless (package-installed-p package)
-      (unless refreshed
-	(setq refreshed t)
-	(package-refresh-contents))
-      (message "Installing %S..." package)
-      (package-install package)
-      (message "Installed %S" package))))
+(use-package magit)
 
-(using 'magit)
+(use-package rustic
+  :init
+  (multi-bind rustic-mode-map
+	      ("M-j" . lsp-ui-imenu)
+              ("M-?" . lsp-find-references)
+              ("C-c C-c a" . lsp-execute-code-action)
+              ("C-c C-c r" . lsp-rename)
+              ("C-c C-c q" . lsp-workspace-restart)
+              ("C-c C-c Q" . lsp-workspace-shutdown)
+              ("C-c C-c s" . lsp-rust-analyzer-status)))
 
-(using 'rustic
-       'lsp-mode
-       'lsp-ui)
-
-(multi-bind rustic-mode-map
-	    ("M-j" . lsp-ui-imenu)
-            ("M-?" . lsp-find-references)
-            ("C-c C-c l" . flycheck-list-errors)
-            ("C-c C-c a" . lsp-execute-code-action)
-            ("C-c C-c r" . lsp-rename)
-            ("C-c C-c q" . lsp-workspace-restart)
-            ("C-c C-c Q" . lsp-workspace-shutdown)
-            ("C-c C-c s" . lsp-rust-analyzer-status))
+(use-package lsp-mode
+  :hook (lsp-mode . lsp-enable-which-key-integration))
+(use-package lsp-ui)
 
 (setq lsp-rust-analyzer-cargo-watch-command "clippy")
 (setq lsp-eldoc-render-all t)
@@ -60,28 +57,71 @@
 (setq lsp-ui-sideline-show-hover t)
 (setq lsp-ui-doc-enable nil)
 
-(using 'projectile)
+(use-package treemacs)
+(use-package lsp-treemacs)
+(use-package treemacs-projectile)
+
+(use-package projectile)
 
 (projectile-mode 1)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
-(using 'ivy
-       'which-key)
+(use-package ivy)
 (ivy-mode)
 (setq enable-recursive-minibuffers t)
 
+(use-package which-key)
 (which-key-mode)
 
-(using 'company)
+(use-package company)
 (add-hook 'after-init-hook 'global-company-mode)
 
-(using 'geiser-mit)
+(use-package geiser-mit)
 
-(using 'haskell-mode
-       'lsp-haskell)
+(use-package haskell-mode)
+(use-package lsp-haskell)
 
-(add-hook 'haskell-mode-hook #'lsp)
-(add-hook 'haskell-literate-mode-hook #'lsp)
+(use-package haskell-mode
+  :hook (haskell-mode . lsp)
+  :hook (haskell-literate-mode . lsp))
+
+(use-package slime :ensure t
+  :config
+  (setq inferior-lisp-program "sbcl"
+	slime-enable-evaluate-in-emacs t
+	slime-net-coding-system 'utf-8-unix))
+
+(defun restart-slime ()
+  (interactive)
+  (cl-flet ((slime-buf ()
+	    	       (get-buffer (format "*slime-repl ~A*" (file-name-nondirectory inferior-lisp-program))))
+	    (get-current-buf (slime-buf)
+			     (when (and slime-buf
+					(eq slime-buf
+					    (current-buffer))
+					(> (count-windows) 1))
+			       (other-window 1))
+			     (current-buffer)))
+    (let* ((inferior-lisp-buf (get-buffer "*inferior-lisp*"))
+	   (slime-buf (slime-buf))
+	   (current-buf (get-current-buf slime-buf)))
+      (if (and inferior-lisp-buf
+	       slime-buf)
+	  (slime-restart-inferior-lisp)
+	(progn
+	  (slime)
+	  (switch-to-buffer current-buf)))
+      (setq slime-buf (slime-buf))
+      (delete-other-windows)
+      (split-window-horizontally)
+      (select-window (frame-first-window))
+      (switch-to-buffer current-buf)
+      (other-window 1)
+      (switch-to-buffer slime-buffer))))
+
+(when (require 'slime "slime" t)
+  (slime-setup '(slime-fancy slime-asdf slime-references slime-indentation)))
+
 
 ;; Line numbering and modeline stuff
 (setq display-line-numbers-type 'relative)
@@ -123,7 +163,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages nil))
+ '(package-selected-packages
+   '(company geiser-mit haskell-mode ivy lsp-haskell lsp-treemacs lsp-ui
+	     magit projectile rustic slime treemacs-projectile
+	     treemacs-tab-bar)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

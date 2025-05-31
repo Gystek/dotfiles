@@ -11,4 +11,4 @@
 [init]
     defaultBranch = "master" 
 [gpg]
-    program = gpg2
+    program = gpg

@@ -5,3 +5,5 @@ pinentry
 pinentry-gtk
 stow
 xmodmap
+curl
+make
