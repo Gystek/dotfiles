@@ -1,6 +1,6 @@
 #!/bin/sh
 
-process_file() {
+    process_file() {
     local source="$1"
     local dist="$2"
 
@@ -13,7 +13,7 @@ process_file() {
         then
             cd $(dirname "$source")
             stow $(basename "$source") -t "$dist"
-            cd -
+            cd - 1> /dev/null
         else
             printf "Cannot stow a directory to a file.\n" > /dev/stderr
             exit 1
@@ -29,3 +29,5 @@ process_file fish "$HOME/.config/fish"
 process_file emacs "$HOME/.emacs.d/"
 process_file kak "$HOME/.config/kak"
 process_file newsboat "$HOME/.newsboat"
+process_file zellij "$HOME/.config/zellij"
+process_file xmonad "$HOME/.config/xmonad"

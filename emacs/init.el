@@ -32,6 +32,18 @@
 
 (use-package magit)
 
+(use-package eglot
+  :ensure t
+  :config
+  (add-hook 'haskell-mode-hook 'eglot-ensure)
+  :config
+  (setq-default eglot-workspace-configuration
+		'(:haskell (:plugin (:stan (:globalOn :json-false))
+				    :formattingProvider "fourmolu")))
+  :custom
+  (eglot-autoshutdown t)
+  (eglot-confirm-server-initiated-edits nil))
+
 (use-package rustic
   :init
   (multi-bind rustic-mode-map
@@ -158,6 +170,106 @@
 		 latex-compiler (buffer-file-name)))
 
 (keymap-global-set "C-c c" 'latex-compile)
+
+(defun meow-setup ()
+  (meow-define-keys 'motion
+   '("e" . meow-next)
+   '("o" . meow-prev)
+   '("<escape>" . ignore))
+  (meow-define-keys 'leader
+   ;; Use SPC (0-9) for digit arguments.
+   '("1" . meow-digit-argument)
+   '("2" . meow-digit-argument)
+   '("3" . meow-digit-argument)
+   '("4" . meow-digit-argument)
+   '("5" . meow-digit-argument)
+   '("6" . meow-digit-argument)
+   '("7" . meow-digit-argument)
+   '("8" . meow-digit-argument)
+   '("9" . meow-digit-argument)
+   '("0" . meow-digit-argument)
+   '("/" . meow-keypad-describe-key)
+   '("?" . meow-cheatsheet))
+  (meow-define-keys 'insert
+    '("C-[" . meow-normal-mode))
+  (meow-define-keys 'normal
+   '("0" . meow-expand-0)
+   '("9" . meow-expand-9)
+   '("8" . meow-expand-8)
+   '("7" . meow-expand-7)
+   '("6" . meow-expand-6)
+   '("5" . meow-expand-5)
+   '("4" . meow-expand-4)
+   '("3" . meow-expand-3)
+   '("2" . meow-expand-2)
+   '("1" . meow-expand-1)
+   '("-" . negative-argument)
+   '("'" . meow-reverse)
+   '("," . meow-inner-of-thing)
+   '("." . meow-bounds-of-thing)
+   '("[" . meow-beginning-of-thing)
+   '("]" . meow-end-of-thing)
+   '("a" . meow-append)
+   '("A" . meow-open-below)
+   '("b" . meow-back-word)
+   '("B" . meow-back-symbol)
+   '("c" . meow-change)
+   '("h" . meow-delete)
+   '("H" . meow-backward-delete)
+   '("w" . meow-next-word)
+   '("W" . meow-next-symbol)
+   '("f" . meow-find)
+   '("g" . meow-cancel-selection)
+   '("G" . meow-grab)
+   '("n" . meow-left)
+   '("N" . meow-left-expand)
+   '("u" . meow-insert)
+   '("U" . meow-open-above)
+   '("e" . meow-next)
+   '("E" . meow-next-expand)
+   '("o" . meow-prev)
+   '("O" . meow-prev-expand)
+   '("i" . meow-right)
+   '("I" . meow-right-expand)
+   '("m" . meow-join)
+   '("k" . meow-search)
+   '("p" . meow-block)
+   '("P" . meow-to-block)
+   '(";" . meow-yank)
+   '("q" . meow-quit)
+   '("Q" . meow-goto-line)
+   '("r" . meow-replace)
+   '("R" . meow-swap-grab)
+   '("s" . meow-kill)
+   '("t" . meow-till)
+   '("f" . meow-undo)
+   '("F" . meow-undo-in-selection)
+   '("v" . meow-visit)
+   '("d" . meow-mark-word)
+   '("D" . meow-mark-symbol)
+   '("x" . meow-line)
+   '("X" . meow-goto-line)
+   '("j" . meow-save)
+   '("J" . meow-sync-grab)
+   '("z" . meow-pop-selection)
+   '("\"" . repeat)
+   '("<escape>" . ignore)))
+(use-package meow
+  :config
+  (require 'meow)
+  (setq meow-cheatsheet-physical-layout meow-cheatsheet-physical-layout-ansi)
+  (meow-setup)
+  (meow-global-mode 1))
+
+;; Org-mode
+
+(setq org-agenda-files
+      (cons "~/todo.org"
+	    (directory-files-recursively "~/Documents/knowledge/" "\\.org$")))
+
+(setq org-latex-pdf-process
+      '("tectonic -X compile --outdir=%o -Z shell-escape -Z continue-on-errors %f"))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -165,7 +277,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    '(company geiser-mit haskell-mode ivy lsp-haskell lsp-treemacs lsp-ui
-	     magit projectile rustic slime treemacs-projectile
+	     magit meow projectile rustic slime treemacs-projectile
 	     treemacs-tab-bar)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

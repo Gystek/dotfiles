@@ -7,6 +7,7 @@ set fish_greeting ""
 set -gx ORGANIZATION "Gustek <gustek@riseup.net>"
 
 set PATH /usr/local/bin \
+         /usr/lib/jvm/openjdk21/bin/ \
          /bin \
          /usr/bin \
          /usr/local/sbin \
@@ -23,3 +24,5 @@ set PATH /usr/local/bin \
 # This section can be safely removed at any time if needed.
 test -r '/home/gustek/.opam/opam-init/init.fish' && source '/home/gustek/.opam/opam-init/init.fish' > /dev/null 2> /dev/null; or true
 # END opam configuration
+
+set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/gustek/.ghcup/bin $PATH # ghcup-env
