@@ -1,0 +1,13 @@
+[window]
+decorations = "None"
+opacity = 0.5
+blur = true
+
+[font]
+size = 10
+
+[terminal]
+shell = "zellij"
+
+[mouse]
+hide_when_typing = true

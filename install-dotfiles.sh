@@ -1,6 +1,5 @@
 #!/bin/sh
-
-    process_file() {
+process_file() {
     local source="$1"
     local dist="$2"
 
@@ -30,4 +29,4 @@ process_file emacs "$HOME/.emacs.d/"
 process_file kak "$HOME/.config/kak"
 process_file newsboat "$HOME/.newsboat"
 process_file zellij "$HOME/.config/zellij"
-process_file xmonad "$HOME/.config/xmonad"
+process_file alacritty "$HOME/.config/alacritty"
