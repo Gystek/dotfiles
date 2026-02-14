@@ -48,7 +48,7 @@ jd_ash (float jd, int *d, int *m, int *y, int *dow)
 
   delta = jd - hepoc;
 
-  *dow = 2; /* Thursday */
+  *dow = 5; /* Thursday */
   *dow += (int)delta;
   *dow %= 7;
 
@@ -219,7 +219,7 @@ main (void)
   tm = *localtime(&t);
 
   gy = tm.tm_year + 1900;
-  gm = tm.tm_mon + 1;
+  gm = tm.tm_mon;
   gd = tm.tm_mday;
 
   jd = gregorian_jd (gd, gm, gy);
