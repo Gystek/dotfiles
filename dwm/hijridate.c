@@ -38,7 +38,7 @@ main (void)
 {
   const char *is_months[12] = {
 #ifndef __ASCII_MONTHS
-    "Ṣafar",
+      "Ṣafar",
       "Rabīʿ al-Awwal",
       "Rabīʿ ath-Thānī",
       "Jumādā al-ʾŪlā",
@@ -93,7 +93,7 @@ main (void)
   jd += gd;
 
   jd = floor (jd);
-  jd += 0.5;
+  jd -= 0.5;
 
   _c = jd - IEPOCH;
   _c *= 30;
@@ -113,7 +113,7 @@ main (void)
   _c -= hijri_julian(iy, im, 1);
   id = (int)_c;
 
-  printf("%d %s %d\n", id - 29, is_months[im - 1], iy);
+  printf("%d %s %d\n", id - 28, is_months[im - 1], iy);
 
   return 0;
 }
