@@ -17,6 +17,9 @@
   (dolist (binding bindings)
     `(define-key ,map ,(car binding) ',(cdr binding))))
 
+(add-to-list 'package-archives
+	     '("melpa" . "https://melpa.org/packages/") t)
+
 ;; Package management
 (condition-case nil
     (require 'use-package)
@@ -96,6 +99,23 @@
 (use-package haskell-mode
   :hook (haskell-mode . lsp)
   :hook (haskell-literate-mode . lsp))
+
+(use-package neocaml
+  :ensure t
+  :config
+  (with-eval-after-load 'eglot
+    (add-to-list 'eglot-server-programs
+                 '((neocaml-mode neocaml-interface-mode) . ("ocamllsp")))))
+
+(use-package ocaml-eglot
+  :ensure t
+  :after neocaml
+  :hook
+  (neocaml-base-mode . ocaml-eglot-mode)
+  (ocaml-eglot-mode . eglot-ensure))
+
+(add-to-list 'load-path "/home/gustek/.opam/default/share/emacs/site-lisp")
+(require 'ocp-indent)
 
 (use-package slime :ensure t
   :config
@@ -185,11 +205,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(eglot-confirm-server-edits nil nil nil "Customized with use-package eglot")
  '(package-selected-packages
-   '(company geiser-mit haskell-mode ivy lsp-haskell lsp-treemacs lsp-ui
-	     magit meow projectile rustic slime treemacs-projectile
-	     treemacs-tab-bar)))
+   '(company dap-mode geiser-mit haskell-mode ivy lsp-haskell lsp-ui
+	     magit meow neocaml ocaml-eglot request rustic slime
+	     treemacs-projectile treemacs-tab-bar tuareg)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
